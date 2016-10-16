@@ -87,7 +87,10 @@ public class Lexer {
             
             case '+': ch = nextChar();
                 return Token.plusTok;
-
+            
+            case '-': ch = nextChar();
+                // not sure if this will work because of negative numbers
+                return Token.minusTok;
                 // - * ( ) { } ; ,  student exercise
                 
             case '&': check('&'); return Token.andTok;
