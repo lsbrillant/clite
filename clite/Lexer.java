@@ -95,8 +95,23 @@ public class Lexer {
             case '*': ch = nextChar();
                 return Token.multiplyTok;
 
+            case '(': ch = nextChar();
+                return Token.leftParenTok;
+            
+            case ')': ch = nextChar();
+                return Token.rightParenTok;
+
+            case '{': ch = nextChar();
+                return Token.leftBraceTok;
+
+            case '}': ch = nextChar();
+                return Token.rightBraceTok;
+
+            case ';': ch = nextChar();
+                return Token.semicolonTok;
+
                 // - * ( ) { } ; ,  student exercise
-                
+            
             case '&': check('&'); return Token.andTok;
             case '|': check('|'); return Token.orTok;
 
