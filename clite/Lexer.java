@@ -129,7 +129,7 @@ public class Lexer {
     }
   
     private boolean isDigit(char c) {
-        return (c>='0' && c<='9');  // student exercise
+        return (c>='0' && c<='9');
     }
 
     private void check(char c) {
@@ -140,7 +140,28 @@ public class Lexer {
     }
 
     private Token chkOpt(char c, Token one, Token two) {
-        return null;  // student exercise
+        for (Token t : new Token[]{one,two}) {
+            if (t.value().length() > 1) {
+                boolean allMatch = true;
+                for(char tc : t.value().toCharArray()) {
+                    if (tc != ch){
+                        allMatch &= false;
+                    }
+                    ch = nextChar();
+                }
+                if (allMatch) {
+                    return t;
+                } else {
+                    // reset ch
+                    ch = c;
+                }
+            } else {
+                ch = nextChar();
+                return t;
+            }
+        }
+        //should never get here
+        return null;
     }
 
     private String concat(String set) {
