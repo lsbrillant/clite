@@ -54,7 +54,7 @@ public class Parser {
         // Declarations --> { Declaration }
         return null;  // student exercise
     }
-  
+
     private void declaration (Declarations ds) {
         // Declaration  --> Type Identifier { , Identifier } ;
         // student exercise
@@ -68,7 +68,7 @@ public class Parser {
             case Float: t = Type.FLOAT; break;
             case Char: t = Type.CHAR; break;
             default:
-                error("should not get here.");
+                error("could not match type " + t + " to a known type.");
         }
         return t;
     }
@@ -93,38 +93,76 @@ public class Parser {
     }
   
     private Assignment assignment () {
-        // Assignment --> Identifier = Expression ;
+        // Assignment --> Identifier '=' Expression ;
+        match(Identifier);
+        match(Assign);
+        expresion();
         return null;  // student exercise
     }
   
     private Conditional ifStatement () {
-        // IfStatement --> if ( Expression ) Statement [ else Statement ]
+        // IfStatement --> 'if' '(' Expression ')' Statement [ else Statement ]
+        match(If);
         return null;  // student exercise
     }
   
     private Loop whileStatement () {
         // WhileStatement --> while ( Expression ) Statement
-        return null;  // student exercise
+        match(While); // while
+        match(LeftParen); // (
+
+        Expression e = expresion();
+
+        match(RightParen); // )
+
+        Statement s = statement();
+
+        Loop l = new Loop(e, s);
+        return l;  // student exercise
     }
 
     private Expression expression () {
         // Expression --> Conjunction { || Conjunction }
-        return null;  // student exercise
+        Expression e = conjunction();
+        while (token.type().equals(Or)) {
+            Operator op = new Operator(match(token.type()));
+            Expression eq2 = conjunction();
+            e = new Binary(op, e, eq2);
+        }
+        return e;
     }
   
     private Expression conjunction () {
         // Conjunction --> Equality { && Equality }
-        return null;  // student exercise
+        Expression e = equality();
+        while (token.type().equals(And)) {
+            Operator op = new Operator(match(token.type()));
+            Expression eq2 = equality();
+            e = new Binary(op, e, eq2);
+        }
+        return e;
     }
   
     private Expression equality () {
         // Equality --> Relation [ EquOp Relation ]
-        return null;  // student exercise
+        Expression e = relation();
+        if (isEqualityOp()) {
+            Operator op = new Operator(match(token.type()));
+            Expression relation2 = relation();
+            e = new Binary(op, e, relation2);
+        }
+        return e;
     }
 
     private Expression relation (){
         // Relation --> Addition [RelOp Addition] 
-        return null;  // student exercise
+        Expression e = addition();
+        if (isRelationalOp()) {
+            Operator op = new Operator(match(token.type()));
+            Expression addition2 = addition();
+            e = new Binary(op, e, addition2);
+        }
+        return e;
     }
   
     private Expression addition () {
