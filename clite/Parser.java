@@ -41,13 +41,12 @@ public class Parser {
   
     public Program program() {
         // Program --> int main ( ) '{' Declarations Statements '}'
-        TokenType[ ] header = {TokenType.Int, TokenType.Main,
-                          TokenType.LeftParen, TokenType.RightParen};
+        TokenType[ ] header = {Int, Main, LeftParen, RightParen};
         for (int i=0; i<header.length; i++)   // bypass "int main ( )"
             match(header[i]);
-        match(TokenType.LeftBrace);
+        match(LeftBrace);
         // student exercise
-        match(TokenType.RightBrace);
+        match(RightBrace);
         return null;  // student exercise
     }
   
@@ -84,7 +83,12 @@ public class Parser {
     private Block statements () {
         // Block --> '{' Statements '}'
         Block b = new Block();
+        match(LeftBrace);
+        while(!token.type().equals(RightBrace)){
+            b.members.add(statement());
+        }
         // student exercise
+        match(RightBrace);
         return b;
     }
   
