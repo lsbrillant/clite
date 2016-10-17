@@ -116,7 +116,16 @@ public class Lexer {
             case '=':
                 return chkOpt('=', Token.assignTok,
                                    Token.eqeqTok);
-                // < > !  student exercise 
+
+            case '<':
+                return chkOpt('<', Token.ltTok,
+                                   Token.lteqTok);
+            case '>':
+                return chkOpt('>', Token.gtTok,
+                                   Token.gteqTok);
+            case '!':
+                return chkOpt('!', Token.notTok,
+                                   Token.noteqTok);
 
             default:  error("Illegal character " + ch); 
             } // switch
