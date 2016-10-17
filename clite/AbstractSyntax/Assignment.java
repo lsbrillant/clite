@@ -5,7 +5,7 @@ public class Assignment extends Statement {
     Variable target;
     Expression source;
 
-    Assignment (Variable t, Expression e) {
+    public Assignment (Variable t, Expression e) {
         target = t;
         source = e;
     }

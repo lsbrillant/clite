@@ -5,7 +5,7 @@ public class Loop extends Statement {
     Expression test;
     Statement body;
 
-    Loop (Expression t, Statement b) {
+    public Loop (Expression t, Statement b) {
         test = t; body = b;
     }
     

@@ -44,10 +44,14 @@ public class Parser {
         TokenType[ ] header = {Int, Main, LeftParen, RightParen};
         for (int i=0; i<header.length; i++)   // bypass "int main ( )"
             match(header[i]);
-        match(LeftBrace);
-        // student exercise
-        match(RightBrace);
-        return null;  // student exercise
+       
+        match(LeftBrace); // { 
+
+        Program p = new Program(declarations(), statements());
+
+        match(RightBrace); // }
+        
+        return p;  // student exercise
     }
   
     private Declarations declarations () {
@@ -68,7 +72,7 @@ public class Parser {
             case Float: t = Type.FLOAT; break;
             case Char: t = Type.CHAR; break;
             default:
-                error("could not match type " + t + " to a known type.");
+                error("Int | Bool | Float | Char");
         }
         return t;
     }
@@ -76,27 +80,51 @@ public class Parser {
     private Statement statement() {
         // Statement --> ; | Block | Assignment | IfStatement | WhileStatement
         Statement s = new Skip();
-        // student exercise
+        switch (token.type()) {
+            case RightBrace:
+                s = block();
+                break;
+            case If:
+                s = ifStatement();
+                break;
+            case While:
+                s = whileStatement();
+                break;
+            case Identifier:
+                s = assignment(); 
+                break;
+            default:
+                error("Block | Assignment | IfStatement | WhileStatement");
+        }
         return s;
     }
   
     private Block statements () {
-        // Block --> '{' Statements '}'
+        // Statements --> { Statement }
         Block b = new Block();
-        match(LeftBrace);
         while(!token.type().equals(RightBrace)){
             b.members.add(statement());
         }
-        // student exercise
-        match(RightBrace);
         return b;
+    }
+    
+    private Block block() {
+        // Block --> '{' Statements '}'
+        Block b = new Block();
+        match(LeftBrace); // {
+        
+        b.members.addAll(statements().members); // Statements
+        
+        match(RightBrace); // }
+        return b;
+    
     }
   
     private Assignment assignment () {
         // Assignment --> Identifier '=' Expression ;
         match(Identifier);
         match(Assign);
-        expresion();
+        //expresion();
         return null;  // student exercise
     }
   
@@ -111,7 +139,7 @@ public class Parser {
         match(While); // while
         match(LeftParen); // (
 
-        Expression e = expresion();
+        Expression e = expression();
 
         match(RightParen); // )
 

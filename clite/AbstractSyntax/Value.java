@@ -6,31 +6,31 @@ public abstract class Value extends Expression {
     protected Type type;
     protected boolean undef = true;
 
-    int intValue ( ) {
+    public int intValue ( ) {
         assert false : "should never reach here";
         return 0;
     }
     
-    boolean boolValue ( ) {
+    public boolean boolValue ( ) {
         assert false : "should never reach here";
         return false;
     }
     
-    char charValue ( ) {
+    public char charValue ( ) {
         assert false : "should never reach here";
         return ' ';
     }
     
-    float floatValue ( ) {
+    public float floatValue ( ) {
         assert false : "should never reach here";
         return 0.0f;
     }
 
-    boolean isUndef( ) { return undef; }
+    public boolean isUndef( ) { return undef; }
 
-    Type type ( ) { return type; }
+    public Type type ( ) { return type; }
 
-    static Value mkValue (Type type) {
+    public static Value mkValue (Type type) {
         if (type == Type.INT) return new IntValue( );
         if (type == Type.BOOL) return new BoolValue( );
         if (type == Type.CHAR) return new CharValue( );

@@ -3,11 +3,11 @@ package clite.AbstractSyntax;
 public class IntValue extends Value {
     private int value = 0;
 
-    IntValue ( ) { type = Type.INT; }
+    public IntValue ( ) { type = Type.INT; }
 
-    IntValue (int v) { this( ); value = v; undef = false; }
+    public IntValue (int v) { this( ); value = v; undef = false; }
 
-    int intValue ( ) {
+    public int intValue ( ) {
         assert !undef : "reference to undefined int value";
         return value;
     }
