@@ -106,6 +106,12 @@ public class Lexer {
 
             case '}': ch = nextChar();
                 return Token.rightBraceTok;
+            
+            case '[': ch = nextChar();
+                return Token.leftBracketTok;
+
+            case ']': ch = nextChar();
+                return Token.rightBracketTok;
 
             case ';': ch = nextChar();
                 return Token.semicolonTok;
@@ -157,8 +163,10 @@ public class Lexer {
         for (Token t : new Token[]{one,two}) {
             if (t.value().length() > 1) {
                 //char[] chechAgainst = new char[t.value.length()] {c};
-                if(t.value().charAt(1) == ch){
+                if(t.value().charAt(1) == ch) {
+                    ch = nextChar();
                     match = t;
+                    break;
                 }
                 /*
                 boolean allMatch = true;
@@ -176,9 +184,7 @@ public class Lexer {
                 }
                 */
             } else {
-                if(match == null){
-                    match = t;
-                }
+                match = t;
             }
         }
         return match;
