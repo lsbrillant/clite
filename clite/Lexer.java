@@ -109,9 +109,7 @@ public class Lexer {
 
             case ';': ch = nextChar();
                 return Token.semicolonTok;
-
-                // - * ( ) { } ; ,  student exercise
-            
+ 
             case '&': check('&'); return Token.andTok;
             case '|': check('|'); return Token.orTok;
 
@@ -131,7 +129,7 @@ public class Lexer {
     }
   
     private boolean isDigit(char c) {
-        return false;  // student exercise
+        return (c>='0' && c<='9');  // student exercise
     }
 
     private void check(char c) {
