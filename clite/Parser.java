@@ -1,6 +1,8 @@
 package clite;
 
 import java.util.*;
+import clite.AbstractSyntax.*;
+import static clite.TokenType.*;
 
 public class Parser {
     // Recursive descent parser that inputs a C++Lite program and 
@@ -38,7 +40,7 @@ public class Parser {
     }
   
     public Program program() {
-        // Program --> void main ( ) '{' Declarations Statements '}'
+        // Program --> int main ( ) '{' Declarations Statements '}'
         TokenType[ ] header = {TokenType.Int, TokenType.Main,
                           TokenType.LeftParen, TokenType.RightParen};
         for (int i=0; i<header.length; i++)   // bypass "int main ( )"
@@ -60,10 +62,16 @@ public class Parser {
     }
   
     private Type type () {
-        // Type  -->  int | bool | float | char 
-        Type t = null;
-        // student exercise
-        return t;          
+        Type t = null; 
+        switch(token.type()){
+            case Int: t = Type.INT; break;
+            case Bool: t = Type.BOOL; break;
+            case Float: t = Type.FLOAT; break;
+            case Char: t = Type.CHAR; break;
+            default:
+                error("should not get here.");
+        }
+        return t;
     }
   
     private Statement statement() {
