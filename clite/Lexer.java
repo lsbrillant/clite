@@ -127,6 +127,9 @@ public class Lexer {
                 return chkOpt('!', Token.notTok,
                                    Token.noteqTok);
 
+            case ',': ch = nextChar();
+                return Token.commaTok;
+
             default:  error("Illegal character " + ch); 
             } // switch
         } while (true);
@@ -149,8 +152,15 @@ public class Lexer {
     }
 
     private Token chkOpt(char c, Token one, Token two) {
+        Token match = null;
+        ch = nextChar();
         for (Token t : new Token[]{one,two}) {
             if (t.value().length() > 1) {
+                //char[] chechAgainst = new char[t.value.length()] {c};
+                if(t.value().charAt(1) == ch){
+                    match = t;
+                }
+                /*
                 boolean allMatch = true;
                 for(char tc : t.value().toCharArray()) {
                     if (tc != ch){
@@ -164,13 +174,14 @@ public class Lexer {
                     // reset ch
                     ch = c;
                 }
+                */
             } else {
-                ch = nextChar();
-                return t;
+                if(match == null){
+                    match = t;
+                }
             }
         }
-        //should never get here
-        return null;
+        return match;
     }
 
     private String concat(String set) {
