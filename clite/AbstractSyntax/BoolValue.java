@@ -7,12 +7,12 @@ public class BoolValue extends Value {
 
     BoolValue (boolean v) { this( ); value = v; undef = false; }
 
-    boolean boolValue ( ) {
+    public boolean boolValue ( ) {
         assert !undef : "reference to undefined bool value";
         return value;
     }
 
-    int intValue ( ) {
+    public int intValue ( ) {
         assert !undef : "reference to undefined bool value";
         return value ? 1 : 0;
     }

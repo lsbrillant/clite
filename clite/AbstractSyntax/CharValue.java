@@ -3,11 +3,11 @@ package clite.AbstractSyntax;
 public class CharValue extends Value {
     private char value = ' ';
 
-    CharValue ( ) { type = Type.CHAR; }
+    public CharValue ( ) { type = Type.CHAR; }
 
-    CharValue (char v) { this( ); value = v; undef = false; }
+    public CharValue (char v) { this( ); value = v; undef = false; }
 
-    char charValue ( ) {
+    public char charValue ( ) {
         assert !undef : "reference to undefined char value";
         return value;
     }

@@ -4,6 +4,9 @@ import java.util.*;
 import clite.AbstractSyntax.*;
 import static clite.TokenType.*;
 
+import java.lang.Float;
+import java.lang.Integer;
+
 public class Parser {
     // Recursive descent parser that inputs a C++Lite program and 
     // generates its abstract syntax.  Each method corresponds to
@@ -276,7 +279,21 @@ public class Parser {
     }
 
     private Value literal( ) {
-        return null;  // student exercise
+        Value v = null;
+        switch(token.type()) {
+            case IntLiteral:
+                v = new IntValue(java.lang.Integer.parseInt(match(IntLiteral)));
+                break;
+            case FloatLiteral:
+                v = new FloatValue(java.lang.Float.parseFloat(match(FloatLiteral)));
+                break;
+            case CharLiteral:
+                v = new CharValue(match(CharLiteral).charAt(0));
+                break;
+            default: 
+                error("IntLiteral | FloatLiteral | CharLiteral");
+        }
+        return v;
     }
   
 
