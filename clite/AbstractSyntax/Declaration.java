@@ -11,4 +11,7 @@ public class Declaration {
         v = var; t = type;
     } // declaration */
 
+    public void display(String padding) {
+        System.out.print(padding + "< " + t + " " + v + " >");
+    }
 }

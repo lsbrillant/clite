@@ -8,6 +8,10 @@ public class Unary extends Expression {
     public Unary (Operator o, Expression e) {
         op = o; term = e;
     } // unary
+    
+    public String toString() {
+        return "" + op + " " + term;
+    }
 
 }
 

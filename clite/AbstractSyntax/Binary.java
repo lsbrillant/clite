@@ -9,5 +9,9 @@ public class Binary extends Expression {
         op = o; term1 = l; term2 = r;
     } // binary
 
+    public String toString() {
+        return "" + term1 + " " + op + " " + term2;
+    }
+
 }
 

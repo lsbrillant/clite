@@ -14,5 +14,4 @@ public class Variable extends Expression {
     }
     
     public int hashCode ( ) { return id.hashCode( ); }
-
 }

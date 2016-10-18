@@ -9,4 +9,12 @@ public class Loop extends Statement {
         test = t; body = b;
     }
     
+    public void display(String padding) {
+        System.out.println(padding + "Loop:");
+        System.out.println(padding + "  Test:");
+        test.display(padding+"  ");
+        System.out.println(padding + "Body:");
+        body.display(padding + "  ");
+    }
+    
 }

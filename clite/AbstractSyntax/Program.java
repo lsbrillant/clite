@@ -12,6 +12,8 @@ public class Program {
 
     public void display() {
         System.out.println("Program Display");
+        decpart.display("");
+        body.display("");
     }
 
 }

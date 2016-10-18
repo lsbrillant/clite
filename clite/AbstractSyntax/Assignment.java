@@ -9,5 +9,9 @@ public class Assignment extends Statement {
         target = t;
         source = e;
     }
+    
+    public void display(String padding) { 
+        System.out.println(padding + "Assignment: " + target + " = " + source);
+    }
 
 }
