@@ -6,11 +6,11 @@ public class Conditional extends Statement {
     Statement thenbranch, elsebranch;
     // elsebranch == null means "if... then"
     
-    Conditional (Expression t, Statement tp) {
+    public Conditional (Expression t, Statement tp) {
         test = t; thenbranch = tp; elsebranch = new Skip( );
     }
     
-    Conditional (Expression t, Statement tp, Statement ep) {
+    public Conditional (Expression t, Statement tp, Statement ep) {
         test = t; thenbranch = tp; elsebranch = ep;
     }
     

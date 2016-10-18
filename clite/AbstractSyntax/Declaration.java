@@ -7,7 +7,7 @@ public class Declaration {
     Variable v;
     Type t;
 
-    Declaration (Variable var, Type type) {
+    public Declaration (Variable var, Type type) {
         v = var; t = type;
     } // declaration */
 

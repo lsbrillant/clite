@@ -47,21 +47,34 @@ public class Parser {
        
         match(LeftBrace); // { 
 
-        Program p = new Program(declarations(), statements());
+        Declarations d = declarations();
+        Block s = statements();
+
+        Program p = new Program(d, s);
 
         match(RightBrace); // }
         
-        return p;  // student exercise
+        return p;
     }
   
     private Declarations declarations () {
         // Declarations --> { Declaration }
-        return null;  // student exercise
+        Declarations d = new Declarations();
+        while (isType()) {
+            declaration(d);
+        }
+        return d;
     }
 
     private void declaration (Declarations ds) {
         // Declaration  --> Type Identifier { , Identifier } ;
-        // student exercise
+        Type t = type();
+        while(!token.type().equals(Semicolon)) {
+            ds.add(new Declaration((new Variable(match(Identifier))), t));
+            if (token.type().equals(Comma)) {
+                match(Comma);
+            }
+        }
     }
   
     private Type type () {
@@ -74,6 +87,7 @@ public class Parser {
             default:
                 error("Int | Bool | Float | Char");
         }
+        match(token.type());
         return t;
     }
   
@@ -93,6 +107,8 @@ public class Parser {
             case Identifier:
                 s = assignment(); 
                 break;
+            case Semicolon:
+                break;
             default:
                 error("Block | Assignment | IfStatement | WhileStatement");
         }
@@ -101,7 +117,9 @@ public class Parser {
   
     private Block statements () {
         // Statements --> { Statement }
+        
         Block b = new Block();
+        // not the best condition, but I think it would work.
         while(!token.type().equals(RightBrace)){
             b.members.add(statement());
         }
@@ -131,7 +149,15 @@ public class Parser {
     private Conditional ifStatement () {
         // IfStatement --> 'if' '(' Expression ')' Statement [ else Statement ]
         match(If);
-        return null;  // student exercise
+        match(RightParen);
+
+        Expression e = expression();
+
+        match(LeftParen);
+
+        Statement s = statement();
+
+        return new Conditional(e,s);  // student exercise
     }
   
     private Loop whileStatement () {
