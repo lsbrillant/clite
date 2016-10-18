@@ -99,7 +99,7 @@ public class Parser {
         // Statement --> ; | Block | Assignment | IfStatement | WhileStatement
         Statement s = new Skip();
         switch (token.type()) {
-            case RightBrace:
+            case LeftBrace:
                 s = block();
                 break;
             case If:
@@ -145,10 +145,11 @@ public class Parser {
   
     private Assignment assignment () {
         // Assignment --> Identifier '=' Expression ;
-        match(Identifier);
+        Variable v = new Variable(match(Identifier));
+        
         match(Assign);
-        //expresion();
-        return null;  // student exercise
+
+        return new Assignment(v,expression());
     }
   
     private Conditional ifStatement () {
@@ -177,7 +178,7 @@ public class Parser {
         Statement s = statement();
 
         Loop l = new Loop(e, s);
-        return l;  // student exercise
+        return l; 
     }
 
     private Expression expression () {

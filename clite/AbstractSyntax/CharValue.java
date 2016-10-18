@@ -14,7 +14,7 @@ public class CharValue extends Value {
 
     public String toString( ) {
         if (undef)  return "undef";
-        return "" + value;
+        return "'" + value + "'";
     }
 
 }

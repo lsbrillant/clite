@@ -11,8 +11,7 @@ public class Loop extends Statement {
     
     public void display(String padding) {
         System.out.println(padding + "Loop:");
-        System.out.println(padding + "  Test:");
-        test.display(padding+"  ");
+        System.out.println(padding + "  Test: " + test );
         System.out.println(padding + "Body:");
         body.display(padding + "  ");
     }
