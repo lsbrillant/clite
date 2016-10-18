@@ -75,6 +75,7 @@ public class Parser {
                 match(Comma);
             }
         }
+        match(Semicolon);
     }
   
     private Type type () {
@@ -108,6 +109,7 @@ public class Parser {
                 s = assignment(); 
                 break;
             case Semicolon:
+                match(Semicolon);
                 break;
             default:
                 error("Block | Assignment | IfStatement | WhileStatement");
