@@ -1,6 +1,6 @@
 Clite
 =====
 
-A project for the Computability class at the [Evergreen State College](evergreen.edu)
+A project for the Computability class at the [Evergreen State College](www.evergreen.edu)
 
 

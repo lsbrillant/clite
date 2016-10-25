@@ -1,5 +1,8 @@
 package clite.AbstractSyntax;
 
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
 public abstract class Value extends Expression {
     // Value = IntValue | BoolValue |
     //         CharValue | FloatValue

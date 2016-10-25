@@ -1,5 +1,8 @@
 package clite.AbstractSyntax;
 
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
 public class FloatValue extends Value {
     private float value = 0;
 

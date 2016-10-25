@@ -1,6 +1,9 @@
 package clite.AbstractSyntax;
 
-public class Type {
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
+public class Type implements Visitable {
     // Type = int | bool | char | float 
     public final static Type INT = new Type("int");
     public final static Type BOOL = new Type("bool");
@@ -13,4 +16,8 @@ public class Type {
     private Type (String t) { id = t; }
 
     public String toString ( ) { return id; }
+    
+    public void accept(Visitor v) {
+        v.visit(this); 
+    }
 }

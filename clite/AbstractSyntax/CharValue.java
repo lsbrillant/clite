@@ -1,5 +1,8 @@
 package clite.AbstractSyntax;
 
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
 public class CharValue extends Value {
     private char value = ' ';
 

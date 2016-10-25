@@ -1,5 +1,8 @@
 package clite.AbstractSyntax;
 
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
 public class Unary extends Expression {
     // Unary = Operator op; Expression term
     Operator op;
@@ -10,7 +13,16 @@ public class Unary extends Expression {
     } // unary
     
     public String toString() {
-        return "" + op + " " + term;
+        return "Unary:";
+    }
+    public void accept(Visitor v) {
+        v.visit(this);
+        v.incLevel();
+
+        op.accept(v);
+        term.accept(v);
+
+        v.decLevel();
     }
 
 }

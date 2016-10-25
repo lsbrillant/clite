@@ -1,6 +1,9 @@
 package clite.AbstractSyntax;
 
-public class Operator {
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
+public class Operator implements Visitable {
     // Operator = BooleanOp | RelationalOp | ArithmeticOp | UnaryOp
     // BooleanOp = && | ||
     final static String AND = "&&";
@@ -146,4 +149,7 @@ public class Operator {
         return map (boolMap, op);
     }
 
+    public void accept(Visitor v) {
+        v.visit(this); 
+    }
 }

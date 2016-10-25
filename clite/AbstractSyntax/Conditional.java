@@ -1,5 +1,8 @@
 package clite.AbstractSyntax;
 
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
 public class Conditional extends Statement {
 // Conditional = Expression test; Statement thenbranch, elsebranch
     Expression test;

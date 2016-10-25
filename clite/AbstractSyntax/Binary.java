@@ -1,5 +1,8 @@
 package clite.AbstractSyntax;
 
+import clite.Patterns.Visitor;
+import clite.Patterns.Visitable;
+
 public class Binary extends Expression {
 // Binary = Operator op; Expression term1, term2
     Operator op;
@@ -10,7 +13,17 @@ public class Binary extends Expression {
     } // binary
 
     public String toString() {
-        return "" + term1 + " " + op + " " + term2;
+        return "Binary:";
+    }
+    public void accept(Visitor v) {
+        v.visit(this);
+        v.incLevel();
+
+        op.accept(v);
+        term1.accept(v);
+        term2.accept(v);
+
+        v.decLevel();
     }
 
 }
