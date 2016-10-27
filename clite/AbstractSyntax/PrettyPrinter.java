@@ -15,11 +15,17 @@ public class PrettyPrinter implements Visitor {
     }
 
     public void visit(Visitable v){
-        for(int i = 0; i < level; i++) {
+        indent(level);
+
+        p.append(v);
+        
+        p.append("\n");
+    }
+
+    protected void indent(int l) {
+        for(int i = 0; i < l; i++) {
             p.append(TAB);
         }
-        p.append(v);
-        p.append("\n");
     }
 
     public int getlevel() {
