@@ -25,10 +25,10 @@ public class PrettyPrinter implements Visitor {
     public int getlevel() {
         return level; 
     }
-    public void incLevel() {
+    public void pushState() {
         level++;
     }
-    public void decLevel() {
+    public void popState() {
         level--;
     }
 

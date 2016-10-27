@@ -17,13 +17,13 @@ public class Binary extends Expression {
     }
     public void accept(Visitor v) {
         v.visit(this);
-        v.incLevel();
+        v.pushState();
 
         op.accept(v);
         term1.accept(v);
         term2.accept(v);
 
-        v.decLevel();
+        v.popState();
     }
 
 }

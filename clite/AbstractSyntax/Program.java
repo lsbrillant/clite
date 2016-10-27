@@ -25,12 +25,12 @@ public class Program implements Visitable {
     public void accept( Visitor v ) { 
         v.visit(this);
         
-        v.incLevel();
+        v.pushState();
 
         decpart.accept(v);
         body.accept(v);
         
-        v.decLevel();
+        v.popState();
     }
 
 }

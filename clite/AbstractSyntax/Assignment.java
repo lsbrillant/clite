@@ -23,10 +23,10 @@ public class Assignment extends Statement {
 
     public void accept(Visitor v) {
         v.visit(this);
-        v.incLevel();
+        v.pushState();
         target.accept(v);
         source.accept(v);
-        v.decLevel();
+        v.popState();
 
     }
 

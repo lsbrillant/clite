@@ -23,11 +23,11 @@ public class Block extends Statement {
 
     public void accept(Visitor v) {
         v.visit(this);
-        v.incLevel();
+        v.pushState();
         for(Statement s : members) {
             s.accept(v);
         }
-        v.decLevel();
+        v.popState();
     }
 
 }

@@ -25,15 +25,15 @@ public class Loop extends Statement {
     public void accept(Visitor v) {
         v.visit(this);
 
-        v.incLevel();
+        v.pushState();
        
         test.accept(v);
         
-        v.incLevel();
+        v.pushState();
         
         body.accept(v);
 
-        v.decLevel();
-        v.decLevel();
+        v.popState();
+        v.popState();
     } 
 }

@@ -17,12 +17,12 @@ public class Unary extends Expression {
     }
     public void accept(Visitor v) {
         v.visit(this);
-        v.incLevel();
+        v.pushState();
 
         op.accept(v);
         term.accept(v);
 
-        v.decLevel();
+        v.popState();
     }
 
 }

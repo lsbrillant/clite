@@ -20,11 +20,11 @@ public class Declarations extends ArrayList<Declaration> implements Visitable {
     public void accept(Visitor v) {
         v.visit(this);
         
-        v.incLevel();
+        v.pushState();
         for(Declaration d: this) {
             d.accept(v);
         }
-        v.decLevel();
+        v.popState();
     }
     public String toString() {
         return "Declarations:";
